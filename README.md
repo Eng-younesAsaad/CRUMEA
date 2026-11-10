@@ -2,6 +2,8 @@
 
 An editorial-grade artisan bakery e-commerce experience built with **Next.js 15 (App Router)**, **React 19**, **Strict TypeScript**, and **Tailwind CSS**. Designed with an authentic Parisian atelier aesthetic, high-craft typography, and robust state architecture.
 
+Take a look from here ---------> https://crumea.vercel.app 
+
 ---
 
 ## 1. Architectural Highlights
