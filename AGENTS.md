@@ -1,0 +1,119 @@
+# CRUMÉA Luxury Artisan Bakery - Agent Rules & Architecture Guide
+
+## 1. Project Overview & Architectural Boundaries
+
+CRUMÉA is built on **Next.js 15 (App Router)**, **React 19**, **Strict TypeScript**, and **Tailwind CSS**.
+The project strictly adheres to a **Root-level Feature Architecture** with **NO `src/` directory**, matching the target class slide specification.
+
+### Exact Root Directory Structure:
+```
+crumea_shop/
+├── app/                  # ONLY Next.js App Router routes & globals.css
+│   ├── layout.tsx        # Root layout with providers, fonts, header & footer
+│   ├── page.tsx          # Home page / temporary test bench
+│   ├── globals.css       # THE ONLY .css file in repository (@theme + :root/.dark)
+│   ├── loading.tsx       # Route loading skeleton UI
+│   ├── error.tsx         # Route error boundary ("use client")
+│   └── not-found.tsx     # Custom 404 page ("Crumb Not Found")
+├── components/
+│   ├── ui/               # shadcn/ui accessible primitives (cva, Radix UI)
+│   │   ├── button.tsx
+│   │   ├── input.tsx
+│   │   ├── card.tsx
+│   │   ├── badge.tsx
+│   │   ├── modal.tsx
+│   │   ├── label.tsx
+│   │   ├── textarea.tsx
+│   │   ├── radio-group.tsx
+│   │   └── skeleton.tsx
+│   └── layout/           # Shared layout components
+│       ├── Header.tsx
+│       ├── Footer.tsx
+│       ├── ThemeProvider.tsx
+│       ├── ThemeToggle.tsx
+│       └── ToastContainer.tsx
+├── features/             # Domain feature modules
+│   ├── products/
+│   │   ├── products.types.ts
+│   │   ├── products.api.ts
+│   │   ├── products.logic.ts
+│   │   └── components/
+│   ├── cart/
+│   │   ├── cart.types.ts
+│   │   ├── cart.logic.ts
+│   │   ├── cart.state.ts
+│   │   ├── CartProvider.tsx
+│   │   └── components/
+│   └── checkout/
+│       ├── checkout.schema.ts
+│       └── components/
+├── lib/                  # Shared utilities and core cross-cutting logic
+│   ├── utils.ts          # cn() classnames helper (clsx + tailwind-merge)
+│   ├── api/
+│   │   └── client.ts     # Central HTTP client (ApiError, runtime predicates, modes)
+│   └── context/
+│       └── ToastContext.tsx # Centralized non-blocking toast notifications
+├── public/               # Static assets
+├── components.json       # shadcn/ui configuration
+├── tailwind.config.ts    # Tailwind CSS config
+├── tsconfig.json         # Strict TypeScript configuration ("@/*": ["./*"])
+└── package.json
+```
+
+---
+
+## 2. Strict TypeScript Rules (Invariants)
+
+1. **Zero `any`**:
+   - `any` is strictly prohibited throughout the entire codebase.
+   - Use explicit interfaces, generic parameters, or `unknown` narrowed with type guards (`data is T`).
+
+2. **Zero `as` Type Casting**:
+   - Do NOT use `as Product`, `as ApiProduct`, or `as string` to force type assertions.
+   - All external data (API responses, `localStorage` JSON, URL params) must be validated using runtime type predicates (`isProduct`, `isCartItem`, `isTheme`, etc.) or Zod schemas.
+
+3. **Zero `!` Non-Null Assertions**:
+   - Do NOT use the `!` operator to assert existence.
+   - Use optional chaining (`?.`), nullish coalescing (`??`), or defensive `if (!value) return` guards.
+
+4. **Compiler Rigor**:
+   - `"strict": true` in `tsconfig.json`.
+   - `npm run typecheck` (`tsc --noEmit`) must always exit with **0 errors**.
+
+---
+
+## 3. shadcn/ui Usage Rules
+
+1. All UI primitives reside in `components/ui/` and are built on top of Radix UI primitives and `class-variance-authority` (`cva`).
+2. Components must support polymorphic composition via `@radix-ui/react-slot` (`asChild`).
+3. Primitives must consume CRUMÉA design tokens defined in `globals.css` and `tailwind.config.ts`.
+4. Variants:
+   - `Button`: `variant` (`default`, `primary`, `secondary`, `outline`, `ghost`, `destructive`), `size` (`default`, `sm`, `lg`, `icon`).
+   - `Badge`: `variant` (`default`, `gold`, `secondary`, `outline`, `success`, `destructive`).
+   - `Modal`: Accessible dialog built on `@radix-ui/react-dialog` with typed props: `isOpen`, `onClose`, `title`, `description`, `size`, `children`, `footer`.
+
+---
+
+## 4. Styling & `@theme` Tokens
+
+- **Single CSS File Invariant**: `app/globals.css` is the **ONLY** `.css` file permitted in the repository.
+- No ad-hoc inline styles for color or spacing.
+- Both `@theme` and `:root` / `.dark` variables are synchronized for seamless light/dark mode transitions.
+- Light mode: Warm Alabaster Cream background (`#FAF6F0`), Deep Espresso text (`#1A110B`).
+- Dark mode: Deep Espresso background (`#1A110B`), Roasted Cocoa card surfaces (`#241710`), Soft Cream text (`#FAF6F0`).
+- Accent: Burnished Gold (`#C89B68`).
+
+---
+
+## 5. Architectural Separation
+
+1. **Server Components by Default**:
+   - Page routes and layout shells remain Server Components unless client reactivity is strictly required.
+2. **`"use client"` Leaf Boundaries**:
+   - Only interactive stateful components (`CartProvider`, `ThemeProvider`, `ToastProvider`, interactive forms, toggles) include `"use client"`.
+3. **Pure Business Logic**:
+   - Math and domain filtering logic live strictly in pure functions (`cart.logic.ts`, `products.logic.ts`).
+   - Pure functions never import React hooks or touch the DOM.
+4. **Derived State**:
+   - Subtotals, counts, and filtered lists are computed during render, never stored in redundant `useState` or synchronized via `useEffect`.
+

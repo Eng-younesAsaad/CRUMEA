@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-espresso: #1A110B;
+  --color-cocoa: #241710;
+  --color-cream: #FAF6F0;
+  --color-oat: #F3ECE1;
+  --color-card-cream: #F5EFE6;
+  --color-gold: #C89B68;
+  --color-gold-hover: #B88956;
+  --color-espresso-ink: #2A1E17;
+  --color-mocha: #6E5A4F;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+:root {
+  /* Brand Tokens */
+  --color-espresso: #1A110B;
+  --color-cocoa: #241710;
+  --color-cream: #FAF6F0;
+  --color-oat: #F3ECE1;
+  --color-card-cream: #F5EFE6;
+  --color-gold: #C89B68;
+  --color-gold-hover: #B88956;
+  --color-espresso-ink: #2A1E17;
+  --color-mocha: #6E5A4F;
+
+  /* shadcn/ui Semantic Tokens - Light Mode (Warm Cream) */
+  --background: #FAF6F0;
+  --foreground: #1A110B;
+  --card: #F5EFE6;
+  --card-foreground: #2A1E17;
+  --primary: #C89B68;
+  --primary-foreground: #1A110B;
+  --secondary: #F3ECE1;
+  --secondary-foreground: #2A1E17;
+  --muted: #6E5A4F;
+  --muted-foreground: #6E5A4F;
+  --accent: #C89B68;
+  --accent-foreground: #1A110B;
+  --destructive: #DC2626;
+  --destructive-foreground: #FAF6F0;
+  --border: #E8DEC8;
+  --ring: #C89B68;
+
+  /* Border Radius Tokens */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+.dark {
+  /* Brand Tokens in Dark Mode */
+  --color-espresso: #120B07;
+  --color-cocoa: #1A100B;
+  --color-cream: #FAF6F0;
+  --color-oat: #221711;
+  --color-card-cream: #1E140E;
+  --color-gold: #C89B68;
+  --color-gold-hover: #D6AA76;
+  --color-espresso-ink: #FAF6F0;
+  --color-mocha: #A89587;
+
+  /* shadcn/ui Semantic Tokens - Dark Mode (Rich Espresso) */
+  --background: #1A110B;
+  --foreground: #FAF6F0;
+  --card: #241710;
+  --card-foreground: #FAF6F0;
+  --primary: #C89B68;
+  --primary-foreground: #1A110B;
+  --secondary: #241710;
+  --secondary-foreground: #FAF6F0;
+  --muted: #6E5A4F;
+  --muted-foreground: #A89587;
+  --accent: #C89B68;
+  --accent-foreground: #1A110B;
+  --destructive: #EF4444;
+  --destructive-foreground: #FAF6F0;
+  --border: #352319;
+  --ring: #C89B68;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
