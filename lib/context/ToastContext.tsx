@@ -18,7 +18,11 @@ interface ToastContextType {
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
-export function ToastProvider({ children }: { children: React.ReactNode }): React.ReactElement {
+export function ToastProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactElement {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   const removeToast = useCallback((id: string) => {
@@ -96,4 +100,3 @@ export function useToast(): {
     removeToast: context.removeToast,
   };
 }
-

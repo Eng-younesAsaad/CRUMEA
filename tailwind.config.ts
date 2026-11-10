@@ -60,7 +60,12 @@ const config: Config = {
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Playfair Display", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
+        sans: [
+          "var(--font-sans)",
+          "Plus Jakarta Sans",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       boxShadow: {
         warm: "0 2px 4px rgba(26, 17, 11, 0.05)",
@@ -73,4 +78,3 @@ const config: Config = {
 };
 
 export default config;
-

@@ -12,7 +12,10 @@ export default function Loading(): React.ReactElement {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="space-y-4 p-4 border border-border rounded-xl">
+          <div
+            key={i}
+            className="space-y-4 p-4 border border-border rounded-xl"
+          >
             <Skeleton className="h-48 w-full rounded-lg" />
             <Skeleton className="h-6 w-2/3" />
             <Skeleton className="h-4 w-1/3" />
@@ -23,4 +26,3 @@ export default function Loading(): React.ReactElement {
     </div>
   );
 }
-

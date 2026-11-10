@@ -7,7 +7,12 @@ export class ApiError extends Error {
   readonly statusText: string;
   readonly details: unknown;
 
-  constructor(message: string, statusCode: number, statusText: string, details?: unknown) {
+  constructor(
+    message: string,
+    statusCode: number,
+    statusText: string,
+    details?: unknown
+  ) {
     super(message);
     this.name = "ApiError";
     this.statusCode = statusCode;
@@ -24,7 +29,10 @@ export interface FetchOptions extends RequestInit {
   };
 }
 
-export function resolveEndpointUrl(path: string, mode: ApiDiagnosticMode = "normal"): string {
+export function resolveEndpointUrl(
+  path: string,
+  mode: ApiDiagnosticMode = "normal"
+): string {
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
 
   switch (mode) {
@@ -47,7 +55,8 @@ export function detectModeFromSearchParams(
     return "normal";
   }
 
-  const modeVal = typeof params["mode"] === "string" ? params["mode"] : undefined;
+  const modeVal =
+    typeof params["mode"] === "string" ? params["mode"] : undefined;
   if (modeVal === "delay" || modeVal === "fail" || modeVal === "empty") {
     return modeVal;
   }
@@ -73,7 +82,9 @@ export async function fetchJson<T>(
   const mode = options?.modeOverride ?? "normal";
   const finalUrl = url.startsWith("http") ? url : resolveEndpointUrl(url, mode);
 
-  const fetchInit: RequestInit & { next?: { revalidate?: number | false; tags?: string[] } } = {
+  const fetchInit: RequestInit & {
+    next?: { revalidate?: number | false; tags?: string[] };
+  } = {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -120,4 +131,3 @@ export async function fetchJson<T>(
 
   return rawData;
 }
-

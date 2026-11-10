@@ -58,7 +58,10 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
 
             {/* Badges */}
             <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 pointer-events-none">
-              <Badge variant="gold" className="text-[10px] tracking-wider uppercase backdrop-blur-sm">
+              <Badge
+                variant="gold"
+                className="text-[10px] tracking-wider uppercase backdrop-blur-sm"
+              >
                 {product.category}
               </Badge>
             </div>
@@ -151,7 +154,9 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
                 className="flex items-center gap-1.5"
               >
                 <ShoppingBag className="w-4 h-4" />
-                <span>Add {quickViewQty > 1 ? `(${quickViewQty})` : ""} to Cart</span>
+                <span>
+                  Add {quickViewQty > 1 ? `(${quickViewQty})` : ""} to Cart
+                </span>
               </Button>
             </div>
           </div>
@@ -189,7 +194,9 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
                 <div className="inline-flex items-center rounded-lg border border-border bg-background shadow-sm">
                   <button
                     type="button"
-                    onClick={() => setQuickViewQty((prev) => Math.max(1, prev - 1))}
+                    onClick={() =>
+                      setQuickViewQty((prev) => Math.max(1, prev - 1))
+                    }
                     disabled={quickViewQty <= 1}
                     className="p-2 hover:bg-secondary text-muted-foreground hover:text-foreground disabled:opacity-40 transition-colors"
                   >

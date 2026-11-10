@@ -163,7 +163,10 @@ export function Footer(): React.ReactElement {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FAF6F0]/50">
-          <p>© {new Date().getFullYear()} CRUMÉA Luxury Bakery. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} CRUMÉA Luxury Bakery. All rights
+            reserved.
+          </p>
           <p className="mt-2 sm:mt-0 font-serif italic text-[#C89B68]/90">
             Artisanal perfection in every single bite.
           </p>

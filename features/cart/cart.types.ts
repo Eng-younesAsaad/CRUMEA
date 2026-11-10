@@ -39,4 +39,3 @@ export function isCartItem(value: unknown): value is CartItem {
 export function isCartItemList(value: unknown): value is CartItem[] {
   return Array.isArray(value) && value.every(isCartItem);
 }
-

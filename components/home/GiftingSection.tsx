@@ -27,9 +27,10 @@ export function GiftingSection(): React.ReactElement {
             </h2>
 
             <p className="text-sm sm:text-base text-[#FAF6F0]/80 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
-              Whether celebrating a milestone, expressing heartfelt gratitude, or
-              sending a sweet surprise across town — our luxury gold-embossed gift
-              boxes deliver unforgettable bakery moments right to their doorstep.
+              Whether celebrating a milestone, expressing heartfelt gratitude,
+              or sending a sweet surprise across town — our luxury gold-embossed
+              gift boxes deliver unforgettable bakery moments right to their
+              doorstep.
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

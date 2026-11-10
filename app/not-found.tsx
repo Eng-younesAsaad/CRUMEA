@@ -12,8 +12,8 @@ export default function NotFound(): React.ReactElement {
         Crumb Not Found
       </h1>
       <p className="max-w-md text-sm text-muted-foreground leading-relaxed mb-8">
-        The pastry you are searching for might have already been enjoyed or moved
-        to another tray in our atelier.
+        The pastry you are searching for might have already been enjoyed or
+        moved to another tray in our atelier.
       </p>
       <div className="flex flex-wrap items-center justify-center gap-4">
         <Button asChild variant="primary">
@@ -26,4 +26,3 @@ export default function NotFound(): React.ReactElement {
     </div>
   );
 }
-

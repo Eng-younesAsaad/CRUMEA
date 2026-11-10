@@ -71,7 +71,10 @@ function generateProductDescription(name: string, category: string): string {
 
 export function normalizeApiProduct(apiItem: ApiProduct): Product {
   const image = resolveProductImage(apiItem.title, apiItem.category_name);
-  const description = generateProductDescription(apiItem.title, apiItem.category_name);
+  const description = generateProductDescription(
+    apiItem.title,
+    apiItem.category_name
+  );
 
   return {
     id: apiItem.id,
@@ -149,4 +152,3 @@ export async function getProductById(
     }
   }
 }
-

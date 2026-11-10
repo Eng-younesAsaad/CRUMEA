@@ -39,7 +39,9 @@ export function isApiProduct(value: unknown): value is ApiProduct {
   );
 }
 
-export function isApiProductsResponse(value: unknown): value is ApiProductsResponse {
+export function isApiProductsResponse(
+  value: unknown
+): value is ApiProductsResponse {
   if (typeof value !== "object" || value === null) {
     return false;
   }
@@ -77,4 +79,3 @@ export function isProduct(value: unknown): value is Product {
 export function isProductList(value: unknown): value is Product[] {
   return Array.isArray(value) && value.every(isProduct);
 }
-

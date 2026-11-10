@@ -43,8 +43,8 @@ export function NewsletterSection(): React.ReactElement {
             </h2>
 
             <p className="text-xs sm:text-sm text-[#FAF6F0]/75 leading-relaxed font-light">
-              Subscribe for seasonal flavor launches, secret weekend batches, and
-              complimentary delivery on your first order.
+              Subscribe for seasonal flavor launches, secret weekend batches,
+              and complimentary delivery on your first order.
             </p>
           </div>
 
@@ -52,7 +52,8 @@ export function NewsletterSection(): React.ReactElement {
             <div className="flex items-center justify-center gap-2.5 p-4 rounded-xl bg-[#2E7D32]/20 border border-[#2E7D32]/40 text-[#FAF6F0] text-sm text-center">
               <CheckCircle2 className="w-5 h-5 text-[#81C784]" />
               <span>
-                Thank you for subscribing! Check your inbox for your 10% welcome gift.
+                Thank you for subscribing! Check your inbox for your 10% welcome
+                gift.
               </span>
             </div>
           ) : (

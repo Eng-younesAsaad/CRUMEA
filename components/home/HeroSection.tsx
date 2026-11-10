@@ -57,9 +57,9 @@ export function HeroSection(): React.ReactElement {
 
               <Button
                 asChild
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="w-full sm:w-auto border-[#FAF6F0]/30 hover:border-[#C89B68] text-[#FAF6F0] hover:text-[#C89B68] hover:bg-white/5 font-semibold text-xs tracking-[0.14em] uppercase px-8 py-3.5"
+                className="w-full sm:w-auto bg-transparent border border-[#C89B68]/50 text-[#FAF6F0] hover:bg-[#C89B68]/15 hover:text-[#FAF6F0] font-semibold text-xs tracking-[0.14em] uppercase px-8 py-3.5 transition-colors"
               >
                 <Link href="/about">Discover Cruméa</Link>
               </Button>

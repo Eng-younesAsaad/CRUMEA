@@ -6,6 +6,7 @@ CRUMÉA is built on **Next.js 15 (App Router)**, **React 19**, **Strict TypeScri
 The project strictly adheres to a **Root-level Feature Architecture** with **NO `src/` directory**, matching the target class slide specification.
 
 ### Exact Root Directory Structure:
+
 ```
 crumea_shop/
 ├── app/                  # ONLY Next.js App Router routes & globals.css
@@ -117,3 +118,24 @@ crumea_shop/
 4. **Derived State**:
    - Subtotals, counts, and filtered lists are computed during render, never stored in redundant `useState` or synchronized via `useEffect`.
 
+---
+
+## 6. App Router Routes & Completed Domain Modules
+
+- `app/layout.tsx`: Root shell mounting `ThemeProvider`, `ToastProvider`, `CartProvider`, `Header`, `CartDrawer`, `Footer`.
+- `app/page.tsx`: Editorial homepage with `HeroSection`, `CategoryStrip`, `ProductGrid`, `StorySection`, `GiftingSection`, `IngredientsSection`, `ReviewsSection`, `NewsletterSection`.
+- `app/shop/page.tsx`: Catalog route with `ProductFilters` and `ShopCatalogClient` (handles loading, error, empty, and no-match filter states).
+- `app/products/[id]/page.tsx`: Dynamic detail page with breadcrumbs, image zoom, `ProductDetailActions` quantity stepper, and related products.
+- `app/cart/page.tsx`: Full-page cart with free shipping progress bar, `CartItemRow` list, and order summary.
+- `app/checkout/page.tsx`: Checkout flow with `CheckoutForm` and `OrderConfirmation` receipt view.
+- `app/about/page.tsx`: Atelier heritage and philosophy page.
+- `app/not-found.tsx`: Accessible custom 404 page ("Crumb Not Found").
+
+---
+
+## 7. Quality Gates
+
+- `npm run typecheck`: Must pass with 0 errors (`tsc --noEmit`).
+- `npm run lint`: Must pass with 0 warnings or errors (`next lint`).
+- `npm run format:check`: Must pass Prettier verification.
+- `npm run build`: Production compilation and static prerendering must succeed.

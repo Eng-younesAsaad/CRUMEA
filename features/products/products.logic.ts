@@ -48,4 +48,3 @@ export function extractCategories(products: Product[]): string[] {
   }
   return ["All", ...Array.from(set)];
 }
-

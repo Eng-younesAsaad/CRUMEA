@@ -2,7 +2,14 @@
 
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
 export default function ErrorPage({
@@ -25,11 +32,14 @@ export default function ErrorPage({
           </div>
           <CardTitle className="text-xl">Something went wrong</CardTitle>
           <CardDescription>
-            {error.message || "An unexpected error occurred while loading this page."}
+            {error.message ||
+              "An unexpected error occurred while loading this page."}
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center text-xs text-muted-foreground">
-          {error.digest ? `Error digest: ${error.digest}` : "Our pastry chefs have been alerted."}
+          {error.digest
+            ? `Error digest: ${error.digest}`
+            : "Our pastry chefs have been alerted."}
         </CardContent>
         <CardFooter className="justify-center">
           <Button onClick={() => reset()} variant="default">
@@ -40,4 +50,3 @@ export default function ErrorPage({
     </div>
   );
 }
-

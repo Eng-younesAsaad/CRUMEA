@@ -77,4 +77,3 @@ export function clearCartState(): CartItem[] {
   saveCart([]);
   return [];
 }
-

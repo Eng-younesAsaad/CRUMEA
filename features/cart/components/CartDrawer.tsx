@@ -85,7 +85,8 @@ export function CartDrawer(): React.ReactElement {
                   </span>
                 )}
                 <span className="text-muted-foreground">
-                  ${cart.subtotal.toFixed(2)} / ${cart.freeShippingThreshold.toFixed(2)}
+                  ${cart.subtotal.toFixed(2)} / $
+                  {cart.freeShippingThreshold.toFixed(2)}
                 </span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-border/60 overflow-hidden">
@@ -108,8 +109,8 @@ export function CartDrawer(): React.ReactElement {
                       Your Basket is Empty
                     </h3>
                     <p className="text-xs text-muted-foreground max-w-xs">
-                      Fill it with our freshly baked cookies, buttery pastries, and
-                      artisan gift sets!
+                      Fill it with our freshly baked cookies, buttery pastries,
+                      and artisan gift sets!
                     </p>
                   </div>
                   <Button
@@ -147,7 +148,9 @@ export function CartDrawer(): React.ReactElement {
                   <div className="flex justify-between items-center text-[11px]">
                     <span>Fresh Delivery:</span>
                     <span>
-                      {cart.shipping === 0 ? "FREE" : `$${cart.shipping.toFixed(2)}`}
+                      {cart.shipping === 0
+                        ? "FREE"
+                        : `$${cart.shipping.toFixed(2)}`}
                     </span>
                   </div>
                 </div>

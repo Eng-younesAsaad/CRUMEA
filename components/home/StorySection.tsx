@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
-import { Play, Sparkles, Award, Heart } from "lucide-react";
+import { Play, Sparkles, Award } from "lucide-react";
 
 export function StorySection(): React.ReactElement {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -34,9 +34,10 @@ export function StorySection(): React.ReactElement {
 
               <div className="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed font-light">
                 <p>
-                  At Cruméa, every treat is crafted with the finest ingredients and
-                  a whole lot of love. From our oven to your heart — this is more
-                  than baking, it is pure happiness shared one crumb at a time.
+                  At Cruméa, every treat is crafted with the finest ingredients
+                  and a whole lot of love. From our oven to your heart — this is
+                  more than baking, it is pure happiness shared one crumb at a
+                  time.
                 </p>
                 <p>
                   We believe true artisan luxury lives in patient craftsmanship:
@@ -157,7 +158,8 @@ export function StorySection(): React.ReactElement {
                 02. Slow Proofing
               </span>
               <p className="text-muted-foreground leading-relaxed">
-                36-hour cold proofing in cedar wood cabinets for depth of flavor.
+                36-hour cold proofing in cedar wood cabinets for depth of
+                flavor.
               </p>
             </div>
             <div className="p-3.5 rounded-xl border border-border bg-secondary/30 space-y-1">
@@ -165,7 +167,8 @@ export function StorySection(): React.ReactElement {
                 03. Hand Finished
               </span>
               <p className="text-muted-foreground leading-relaxed">
-                Each cookie and madeleine is individually shaped and baked at dawn.
+                Each cookie and madeleine is individually shaped and baked at
+                dawn.
               </p>
             </div>
           </div>

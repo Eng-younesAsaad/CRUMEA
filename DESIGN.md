@@ -6,24 +6,25 @@ CRUMÉA's aesthetic evokes the timeless warmth of high-end Parisian pâtisseries
 
 ### Core Color Palette
 
-| Token Name | CSS Variable | Hex Code | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Deep Espresso** | `--color-espresso` | `#1A110B` | Primary headings, dark mode background, contrast headers |
-| **Roasted Cocoa** | `--color-cocoa` | `#241710` | Secondary dark, card surfaces in dark mode, footer |
-| **Warm Alabaster Cream** | `--color-cream` | `#FAF6F0` | Light mode primary canvas background, soft highlights |
-| **Soft Oat** | `--color-oat` | `#F3ECE1` | Secondary containers, subtle badges, light mode secondary |
-| **Card Cream** | `--color-card-cream` | `#F5EFE6` | Light mode card surfaces and product tiles |
-| **Burnished Gold** | `--color-gold` | `#C89B68` | Primary CTA buttons, accents, gold badges, focus rings |
-| **Gold Hover** | `--color-gold-hover` | `#B88956` | Interactive hover state for primary gold elements |
-| **Espresso Ink** | `--color-espresso-ink` | `#2A1E17` | Primary body typography for maximum legibility |
-| **Muted Mocha** | `--color-mocha` | `#6E5A4F` | Captions, subtitles, secondary metadata, subtle borders |
-| **Warm Border** | `--border` | `#E8DEC8` | Elegant divider borders in light mode |
+| Token Name               | CSS Variable           | Hex Code  | Purpose                                                   |
+| :----------------------- | :--------------------- | :-------- | :-------------------------------------------------------- |
+| **Deep Espresso**        | `--color-espresso`     | `#1A110B` | Primary headings, dark mode background, contrast headers  |
+| **Roasted Cocoa**        | `--color-cocoa`        | `#241710` | Secondary dark, card surfaces in dark mode, footer        |
+| **Warm Alabaster Cream** | `--color-cream`        | `#FAF6F0` | Light mode primary canvas background, soft highlights     |
+| **Soft Oat**             | `--color-oat`          | `#F3ECE1` | Secondary containers, subtle badges, light mode secondary |
+| **Card Cream**           | `--color-card-cream`   | `#F5EFE6` | Light mode card surfaces and product tiles                |
+| **Burnished Gold**       | `--color-gold`         | `#C89B68` | Primary CTA buttons, accents, gold badges, focus rings    |
+| **Gold Hover**           | `--color-gold-hover`   | `#B88956` | Interactive hover state for primary gold elements         |
+| **Espresso Ink**         | `--color-espresso-ink` | `#2A1E17` | Primary body typography for maximum legibility            |
+| **Muted Mocha**          | `--color-mocha`        | `#6E5A4F` | Captions, subtitles, secondary metadata, subtle borders   |
+| **Warm Border**          | `--border`             | `#E8DEC8` | Elegant divider borders in light mode                     |
 
 ---
 
 ## 2. Semantic Theme Mapping (`shadcn/ui`)
 
 ### Light Mode (`:root`)
+
 - `--background`: `#FAF6F0` (Warm Alabaster Cream)
 - `--foreground`: `#1A110B` (Deep Espresso)
 - `--card`: `#F5EFE6` (Card Cream)
@@ -42,6 +43,7 @@ CRUMÉA's aesthetic evokes the timeless warmth of high-end Parisian pâtisseries
 - `--ring`: `#C89B68`
 
 ### Dark Mode (`.dark`)
+
 - `--background`: `#1A110B` (Deep Espresso)
 - `--foreground`: `#FAF6F0` (Warm Alabaster Cream)
 - `--card`: `#241710` (Roasted Cocoa)
@@ -80,4 +82,3 @@ CRUMÉA's aesthetic evokes the timeless warmth of high-end Parisian pâtisseries
   - `shadow-warm`: `0 2px 4px rgba(26, 17, 11, 0.05)`
   - `shadow-warm-md`: `0 4px 12px rgba(26, 17, 11, 0.08)`
   - `shadow-warm-lg`: `0 12px 28px rgba(26, 17, 11, 0.12)`
-

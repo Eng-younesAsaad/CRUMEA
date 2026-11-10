@@ -9,7 +9,10 @@ export function calculateCartCount(items: CartItem[]): number {
   return items.reduce((acc, item) => acc + item.qty, 0);
 }
 
-export function calculateCartTotal(items: CartItem[], products: Product[]): number {
+export function calculateCartTotal(
+  items: CartItem[],
+  products: Product[]
+): number {
   const productMap = new Map<number, Product>();
   for (const product of products) {
     productMap.set(product.id, product);
@@ -81,4 +84,3 @@ export function buildCart(items: CartItem[], products: Product[]): Cart {
     amountNeededForFreeShipping: amountNeeded,
   };
 }
-

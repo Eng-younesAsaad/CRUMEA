@@ -60,4 +60,3 @@ export interface ConfirmedOrder {
   tax: number;
   total: number;
 }
-
