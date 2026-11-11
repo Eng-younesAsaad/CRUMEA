@@ -8,6 +8,9 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky"
@@ -30,17 +33,26 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@playwright/test": "^1.65.0",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.9",
     "@types/node": "^20.17.19",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^6.3.0",
     "autoprefixer": "^10.6.2",
     "eslint": "^9.20.1",
     "eslint-config-next": "^15.1.7",
     "husky": "^9.1.7",
+    "jsdom": "^31.0.0",
     "lint-staged": "^17.6.0",
     "postcss": "^8.5.2",
     "prettier": "^3.9.10",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   }
 }

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const phoneRegex = /^(\+?[0-9\s-]{7,15})$/;
+const phoneRegex = /^(\+?[0-9\s-]{7,20})$/;
 
 export const checkoutSchema = z.object({
   fullName: z

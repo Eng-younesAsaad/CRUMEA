@@ -151,4 +151,17 @@ crumea_shop/
 - `npm run typecheck`: Must pass with 0 errors (`tsc --noEmit`).
 - `npm run lint`: Must pass with 0 warnings or errors (`next lint`).
 - `npm run format:check`: Must pass Prettier verification.
+- `npm run test`: Unit & component tests pass with Vitest.
+- `npm run test:e2e`: Playwright end-to-end checkout suite passes.
 - `npm run build`: Production compilation and static prerendering must succeed.
+
+---
+
+## 8. Testing Rules (Invariants)
+
+1. **The Never-Edit-Tests Rule**:
+   - Never edit, weaken, skip, or delete a failing test just to make the test suite pass. When a test fails, fix the underlying application code unless the product specification itself explicitly changed.
+2. **Accessible Queries Only**:
+   - Component and E2E tests must locate elements exclusively by accessible `role` or `label` (`getByRole`, `getByLabelText` / `page.getByRole`, `page.getByLabel`)—never by CSS class names, tag selectors, or test IDs.
+3. **Descriptive Test Names**:
+   - Every test name (`it(...)` / `test(...)`) must state a clear business truth about what must be true.

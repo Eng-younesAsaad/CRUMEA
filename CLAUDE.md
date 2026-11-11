@@ -27,8 +27,17 @@
 ## Quality Commands
 
 - `npm run dev`: Start Next.js development server.
+- `npm run test`: Run unit and component test suite with Vitest.
+- `npm run test:watch`: Run Vitest in watch mode.
+- `npm run test:e2e`: Run Playwright end-to-end tests.
 - `npm run typecheck`: Run TypeScript compiler check (`tsc --noEmit`).
 - `npm run lint`: Run ESLint check.
 - `npm run format`: Format codebase with Prettier.
 - `npm run format:check`: Check formatting with Prettier.
 - `npm run build`: Production Next.js build and static prerendering.
+
+## Testing Rules (Invariants)
+
+- **The Never-Edit-Tests Rule**: Never edit, weaken, skip, or delete a failing test just to make the test suite pass. When a test fails, fix the underlying application code unless the product specification itself explicitly changed.
+- **Accessible Queries Only**: Component and E2E tests must locate elements exclusively by accessible `role` or `label` (`getByRole`, `getByLabelText` / `page.getByRole`, `page.getByLabel`)—never by CSS class names, tag selectors, or test IDs.
+- **Descriptive Test Names**: Every test name (`it(...)` / `test(...)`) must state a clear business truth about what must be true.
