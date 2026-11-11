@@ -2,7 +2,7 @@
 
 An editorial-grade artisan bakery e-commerce experience built with **Next.js 15 (App Router)**, **React 19**, **Strict TypeScript**, and **Tailwind CSS**. Designed with an authentic Parisian atelier aesthetic, high-craft typography, and robust state architecture.
 
-Take a look from here ---------> https://crumea.vercel.app 
+Take a look from here ---------> https://crumea.vercel.app
 
 ---
 
@@ -18,17 +18,19 @@ Take a look from here ---------> https://crumea.vercel.app
 
 ---
 
-## 2. Next.js App Router Routes
+## 2. Next.js App Router Routes & Modular Architecture
 
-| Route            | Type             | Description                                                                                                                             | Key Components                                                                                       |
-| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `/`              | Server Component | Home page featuring hero banner, category strip, featured treats, bakery story, gifting, and newsletter                                 | `HeroSection`, `CategoryStrip`, `ProductGrid`, `StorySection`, `GiftingSection`, `NewsletterSection` |
-| `/shop`          | Server Component | Full catalog with live search, category pills, price sorting, diagnostic modes (`fail`, `empty`, `slow`), and 4-state handling          | `ProductFilters`, `ShopCatalogClient`, `ProductGrid`, `ProductSkeletonGrid`                          |
-| `/products/[id]` | Server Component | Dynamic product detail route with metadata generation, breadcrumb trail, quantity stepper, and related category treats                  | `ProductDetailActions`, `Badge`, `ProductGrid`                                                       |
-| `/cart`          | Client Component | Full-page shopping cart with free shipping progress tracker ($50 threshold), item rows, clear cart modal, and checkout link             | `CartItemRow`, `Modal`, `Button`, `Card`                                                             |
-| `/checkout`      | Client Component | Atelier checkout flow featuring `react-hook-form` + `zodResolver`, address collection, delivery/payment choices, and order confirmation | `CheckoutForm`, `OrderConfirmation`, `RadioGroup`, `Input`, `Textarea`                               |
-| `/about`         | Server Component | Editorial "Our Story" page featuring the 3 baking pillars, founder's pledge, and Parisian atelier address & baking hours                | `Card`, `Badge`, `Button`                                                                            |
-| `/_not-found`    | Server Component | Custom 404 error page ("Crumb Not Found") with breadcrumb return CTAs                                                                   | `Button`                                                                                             |
+All routes in `app/` are lightweight entry wrappers (< 40–60 lines) that delegate rendering to dedicated `features/*` modules, with every sub-component kept under ~140 lines:
+
+| Route            | Type             | Description                                                                                               | Delegated Feature Components                                                                                                                      |
+| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`              | Server Component | Thin entry route for the editorial home page                                                              | `features/home/components/` (`HeroSection`, `CategoryStrip`, `FeaturedTreatsSection`, `StorySection`, etc.)                                       |
+| `/shop`          | Server Component | Thin catalog route with diagnostic modes (`fail`, `empty`, `slow`), filter pills, and 4-state handling    | `features/products/components/ShopCatalogClient` (with `ProductFilters`, `ShopCatalogHeader`, etc.)                                               |
+| `/products/[id]` | Server Component | Thin dynamic detail route with metadata generation and related treats                                     | `features/products/components/ProductDetailView` (with `ProductDetailActions`, `ProductAssuranceBadges`)                                          |
+| `/cart`          | Client Component | Full-page shopping cart with free shipping progress tracker ($50 threshold)                               | `features/cart/components/CartView` (with `CartSummaryCard`, `CartFreeShippingBar`, `CartEmptyState`)                                             |
+| `/checkout`      | Client Component | Atelier checkout flow with react-hook-form + zodResolver                                                  | `features/checkout/components/CheckoutView` (with `ShippingAddressSection`, `DeliveryPaymentSection`, `CheckoutSummaryCard`, `OrderConfirmation`) |
+| `/about`         | Server Component | Editorial "Our Story" page featuring the 3 baking pillars, founder's pledge, and Parisian atelier address | `features/about/components/AboutView` (with `AboutHero`, `AboutPhilosophy`, `AboutManifesto`, `AboutAtelier`)                                     |
+| `/_not-found`    | Server Component | Custom 404 error page ("Crumb Not Found") with breadcrumb return CTAs                                     | `components/ui/button`                                                                                                                            |
 
 ---
 
@@ -47,14 +49,14 @@ Root Layout (app/layout.tsx)
 
 ### State Ownership Table
 
-| State Slice              | Owner                   | Storage / Lifetime             | Synchronization                        |
-| ------------------------ | ----------------------- | ------------------------------ | -------------------------------------- |
-| Theme (`light` / `dark`) | `ThemeProvider`         | `localStorage["crumea_theme"]` | `data-theme` attribute on `<html>`     |
-| Toast Queue              | `ToastProvider`         | In-memory React state          | Auto-dismiss after 4000ms              |
-| Cart Items               | `CartProvider`          | `localStorage["crumea_cart"]`  | Broadcasts live count & totals         |
-| Shop Filters             | `ShopCatalogClient`     | React state + searchParams     | Instant client-side filter computation |
-| Checkout Form            | `CheckoutForm`          | `react-hook-form`              | Validated by Zod `checkoutSchema`      |
-| Confirmed Order          | `app/checkout/page.tsx` | React state                    | Rendered upon valid checkout submit    |
+| State Slice              | Owner               | Storage / Lifetime             | Synchronization                        |
+| ------------------------ | ------------------- | ------------------------------ | -------------------------------------- |
+| Theme (`light` / `dark`) | `ThemeProvider`     | `localStorage["crumea_theme"]` | `data-theme` attribute on `<html>`     |
+| Toast Queue              | `ToastProvider`     | In-memory React state          | Auto-dismiss after 4000ms              |
+| Cart Items               | `CartProvider`      | `localStorage["crumea_cart"]`  | Zero-network: stores snapshot fields   |
+| Shop Filters             | `ShopCatalogClient` | React state + searchParams     | Instant client-side filter computation |
+| Checkout Form            | `CheckoutForm`      | `react-hook-form`              | Validated by Zod `checkoutSchema`      |
+| Confirmed Order          | `CheckoutView`      | React state                    | Rendered upon valid checkout submit    |
 
 ---
 

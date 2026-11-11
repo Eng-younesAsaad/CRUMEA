@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { type Product } from "../products.types";
 import {
@@ -10,15 +10,8 @@ import {
 } from "../products.logic";
 import { ProductFilters } from "./ProductFilters";
 import { ProductGrid } from "./ProductGrid";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { AlertCircle, RotateCcw } from "lucide-react";
+import { ShopCatalogErrorState } from "./ShopCatalogErrorState";
+import { ShopCatalogEmptyState } from "./ShopCatalogEmptyState";
 
 export interface ShopCatalogClientProps {
   initialProducts: Product[];
@@ -41,6 +34,22 @@ export function ShopCatalogClient({
   const [selectedSort, setSelectedSort] =
     useState<ProductSortOption>("default");
   const [simulatedError, setSimulatedError] = useState(hasServerError);
+
+  useEffect(() => {
+    const urlCategory = searchParams.get("category");
+    if (urlCategory) {
+      setSelectedCategory(urlCategory);
+    } else {
+      setSelectedCategory("All");
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    const urlQuery = searchParams.get("query");
+    if (urlQuery !== null) {
+      setSearchQuery(urlQuery);
+    }
+  }, [searchParams]);
 
   const categories = useMemo(() => {
     return extractCategories(initialProducts);
@@ -73,79 +82,23 @@ export function ShopCatalogClient({
     router.replace("/shop", { scroll: false });
   };
 
-  // State 1: Error State (either server error or simulated diagnostic 500 error)
   if (simulatedError) {
     return (
-      <div className="py-12 flex justify-center">
-        <Card className="max-w-md w-full border-destructive/40 text-center p-6 space-y-4 shadow-warm">
-          <CardHeader className="p-0 space-y-2">
-            <div className="w-12 h-12 rounded-full bg-destructive/10 text-destructive flex items-center justify-center mx-auto">
-              <AlertCircle className="w-6 h-6" />
-            </div>
-            <CardTitle className="text-xl">
-              Catalog Temporarily Unavailable
-            </CardTitle>
-            <CardDescription>
-              We encountered a simulated 500 API diagnostic error while fetching
-              fresh treats.
-            </CardDescription>
-          </CardHeader>
-          <CardFooter className="p-0 justify-center gap-3 pt-2">
-            <Button
-              variant="default"
-              size="sm"
-              onClick={() => {
-                setSimulatedError(false);
-                router.replace("/shop");
-              }}
-              className="flex items-center gap-1.5"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>Try again</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => router.push("/")}
-            >
-              Back to Home
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
+      <ShopCatalogErrorState
+        onRetry={() => {
+          setSimulatedError(false);
+          router.replace("/shop");
+        }}
+      />
     );
   }
 
-  // State 2: Catalog is completely empty from API (?mode=empty)
   if (initialProducts.length === 0) {
-    return (
-      <div className="py-16 text-center max-w-md mx-auto space-y-4">
-        <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mx-auto text-gold text-2xl">
-          🥐
-        </div>
-        <div className="space-y-1">
-          <h2 className="font-serif text-2xl font-bold text-foreground">
-            The Display Case is Empty
-          </h2>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            Our bakers are currently firing up the ovens for the next morning
-            batch. Please check back shortly or reset diagnostic modes.
-          </p>
-        </div>
-        <Button
-          variant="primary"
-          size="sm"
-          onClick={() => router.replace("/shop")}
-        >
-          Reload Normal Catalog
-        </Button>
-      </div>
-    );
+    return <ShopCatalogEmptyState />;
   }
 
   return (
     <div className="space-y-8">
-      {/* Filter and Sort Bar */}
       <ProductFilters
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -160,7 +113,6 @@ export function ShopCatalogClient({
         onSimulateError={() => setSimulatedError(true)}
       />
 
-      {/* State 3 & 4: Filtered Products or No-Match */}
       <ProductGrid
         products={filteredProducts}
         emptyMessage={`No artisan treats matched "${searchQuery || selectedCategory}". Try selecting another category or resetting filters.`}

@@ -2,12 +2,16 @@ import { type Product } from "../products/products.types";
 
 export interface CartItem {
   productId: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
   qty: number;
 }
 
 export interface EnrichedCartItem extends CartItem {
-  product: Product;
   lineTotal: number;
+  product: Product;
 }
 
 export interface Cart {
@@ -30,6 +34,14 @@ export function isCartItem(value: unknown): value is CartItem {
   return (
     "productId" in value &&
     typeof value.productId === "number" &&
+    "name" in value &&
+    typeof value.name === "string" &&
+    "price" in value &&
+    typeof value.price === "number" &&
+    "image" in value &&
+    typeof value.image === "string" &&
+    "category" in value &&
+    typeof value.category === "string" &&
     "qty" in value &&
     typeof value.qty === "number" &&
     value.qty > 0

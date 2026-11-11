@@ -7,9 +7,9 @@ import { type Product } from "../products.types";
 import { useCart } from "@/features/cart/CartProvider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Modal } from "@/components/ui/modal";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Eye, Plus, Minus, ShoppingBag } from "lucide-react";
+import { Eye } from "lucide-react";
+import { ProductQuickViewModal } from "./ProductQuickViewModal";
 
 export interface ProductCardProps {
   product: Product;
@@ -18,20 +18,18 @@ export interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps): React.ReactElement {
   const { addToCart } = useCart();
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
-  const [quickViewQty, setQuickViewQty] = useState(1);
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     e.stopPropagation();
     if (!product.inStock) return;
-    addToCart(product.id, 1);
+    addToCart(product, 1);
   };
 
-  const handleQuickViewAdd = (): void => {
+  const handleQuickViewAdd = (qty: number): void => {
     if (!product.inStock) return;
-    addToCart(product.id, quickViewQty);
+    addToCart(product, qty);
     setIsQuickViewOpen(false);
-    setQuickViewQty(1);
   };
 
   const detailPath = `/products/${product.id}`;
@@ -56,7 +54,6 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
               />
             </Link>
 
-            {/* Badges */}
             <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 pointer-events-none">
               <Badge
                 variant="gold"
@@ -75,7 +72,6 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
               </Badge>
             </div>
 
-            {/* Quick View trigger button */}
             <button
               type="button"
               onClick={() => setIsQuickViewOpen(true)}
@@ -86,7 +82,6 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
             </button>
           </div>
 
-          {/* Product details */}
           <CardContent className="p-4 pt-4">
             <h3 className="font-serif text-base sm:text-lg font-bold text-foreground leading-snug">
               <Link
@@ -102,7 +97,6 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
           </CardContent>
         </div>
 
-        {/* Footer with price & Add to Cart button */}
         <CardFooter className="p-4 pt-0 flex items-center justify-between gap-3 border-t border-border/40 mt-2">
           <div>
             <span className="text-[10px] tracking-wider uppercase text-muted-foreground block">
@@ -126,108 +120,12 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
         </CardFooter>
       </Card>
 
-      {/* Quick View Modal */}
-      <Modal
+      <ProductQuickViewModal
         isOpen={isQuickViewOpen}
         onClose={() => setIsQuickViewOpen(false)}
-        title={product.name}
-        description={`Artisan ${product.category} from our Parisian tray`}
-        size="md"
-        footer={
-          <div className="flex items-center justify-between w-full gap-4">
-            <div className="font-serif text-xl font-bold text-foreground">
-              ${(product.price * quickViewQty).toFixed(2)}
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsQuickViewOpen(false)}
-              >
-                Close
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={handleQuickViewAdd}
-                disabled={!product.inStock}
-                className="flex items-center gap-1.5"
-              >
-                <ShoppingBag className="w-4 h-4" />
-                <span>
-                  Add {quickViewQty > 1 ? `(${quickViewQty})` : ""} to Cart
-                </span>
-              </Button>
-            </div>
-          </div>
-        }
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
-          <div className="relative aspect-square w-full rounded-xl overflow-hidden border border-border bg-secondary/30">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              sizes="(max-width: 640px) 100vw, 300px"
-              className="object-cover"
-            />
-          </div>
-
-          <div className="space-y-4">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Badge variant="gold">{product.category}</Badge>
-                <Badge variant={product.inStock ? "success" : "destructive"}>
-                  {product.inStock ? "Fresh & In Stock" : "Sold Out Today"}
-                </Badge>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {product.description}
-              </p>
-            </div>
-
-            {product.inStock && (
-              <div className="space-y-2">
-                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block">
-                  Select Quantity
-                </label>
-                <div className="inline-flex items-center rounded-lg border border-border bg-background shadow-sm">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setQuickViewQty((prev) => Math.max(1, prev - 1))
-                    }
-                    disabled={quickViewQty <= 1}
-                    className="p-2 hover:bg-secondary text-muted-foreground hover:text-foreground disabled:opacity-40 transition-colors"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="w-10 text-center text-sm font-bold text-foreground">
-                    {quickViewQty}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setQuickViewQty((prev) => prev + 1)}
-                    className="p-2 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <div className="pt-2 text-[11px] text-muted-foreground border-t border-border/60">
-              <Link
-                href={detailPath}
-                onClick={() => setIsQuickViewOpen(false)}
-                className="text-gold font-semibold hover:underline"
-              >
-                View Full Product Story &amp; Details →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Modal>
+        product={product}
+        onAddToCart={handleQuickViewAdd}
+      />
     </>
   );
 }

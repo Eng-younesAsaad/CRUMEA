@@ -26,7 +26,7 @@ export function ProductDetailActions({
 
   const handleAdd = (): void => {
     if (!product.inStock) return;
-    addToCart(product.id, qty);
+    addToCart(product, qty);
   };
 
   return (

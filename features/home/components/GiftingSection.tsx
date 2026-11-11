@@ -12,7 +12,6 @@ export function GiftingSection(): React.ReactElement {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C89B68]/15 border border-[#C89B68]/30 text-[#C89B68] text-xs font-bold tracking-[0.2em] uppercase select-none">
               <Gift className="w-3.5 h-3.5" />
@@ -51,7 +50,6 @@ export function GiftingSection(): React.ReactElement {
             </div>
           </div>
 
-          {/* Visual */}
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-[#C89B68]/30">
               <Image

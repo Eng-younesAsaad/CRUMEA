@@ -55,7 +55,6 @@ export function ReviewsSection(): React.ReactElement {
               className="p-6 border-border/80 hover:border-gold/60 hover:shadow-warm transition-all duration-300 flex flex-col justify-between"
             >
               <CardContent className="p-0 space-y-4">
-                {/* 5 Gold Stars */}
                 <div
                   className="flex items-center gap-1 text-[#C89B68]"
                   aria-label="5 out of 5 stars"

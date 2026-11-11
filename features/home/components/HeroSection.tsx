@@ -10,7 +10,6 @@ export function HeroSection(): React.ReactElement {
       className="relative overflow-hidden bg-gradient-to-br from-[#1A110B] via-[#231710] to-[#120B07] text-[#FAF6F0] py-16 sm:py-24 lg:py-28 border-b border-[#C89B68]/20"
       aria-labelledby="hero-title"
     >
-      {/* Subtle ambient warm glow in background */}
       <div
         className="pointer-events-none absolute -top-40 -left-40 w-96 h-96 rounded-full bg-[#C89B68]/10 blur-3xl"
         aria-hidden="true"
@@ -65,7 +64,6 @@ export function HeroSection(): React.ReactElement {
               </Button>
             </div>
 
-            {/* Quick Guarantees */}
             <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#FAF6F0]/65 font-light">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C89B68]" />
@@ -82,20 +80,18 @@ export function HeroSection(): React.ReactElement {
             </div>
           </div>
 
-          {/* Right Column: Single High-Craft Hero Cookie Presentation */}
+          {/* Right Column: Hero Cookie Presentation */}
           <div className="lg:col-span-5 flex justify-center items-center">
             <div className="relative w-72 sm:w-96 lg:w-[420px] aspect-square">
-              {/* Golden ambient halo */}
               <div
                 className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#C89B68]/30 to-transparent blur-2xl transform scale-105"
                 aria-hidden="true"
               />
 
-              {/* Artisan Cookie Round Image */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[#C89B68]/30 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
                 <Image
                   src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80"
-                  alt="Warm, freshly baked artisan chocolate chip cookie with molten chocolate pools"
+                  alt="Warm, freshly baked artisan chocolate chip cookie"
                   fill
                   priority
                   sizes="(max-width: 640px) 288px, (max-width: 1024px) 384px, 420px"
@@ -103,7 +99,6 @@ export function HeroSection(): React.ReactElement {
                 />
               </div>
 
-              {/* Elegant floating caption pill */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#1A110B]/90 backdrop-blur-md border border-[#C89B68]/40 text-[#FAF6F0] px-4 py-1.5 rounded-full shadow-xl flex items-center gap-2 whitespace-nowrap text-xs font-serif italic">
                 <span className="text-[#C89B68] font-bold">★</span>
                 <span>Signature Dark Chocolate &amp; Sea Salt Cookie</span>

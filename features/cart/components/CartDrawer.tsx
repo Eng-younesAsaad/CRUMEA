@@ -6,10 +6,11 @@ import { useRouter } from "next/navigation";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useCart } from "../CartProvider";
 import { CartItemRow } from "./CartItemRow";
+import { CartDrawerFooter } from "./CartDrawerFooter";
+import { CartDrawerClearModal } from "./CartDrawerClearModal";
 import { Button } from "@/components/ui/button";
-import { Modal } from "@/components/ui/modal";
 import { useToast } from "@/lib/context/ToastContext";
-import { X, ShoppingBag, Sparkles, ArrowRight } from "lucide-react";
+import { X, ShoppingBag, Sparkles } from "lucide-react";
 
 export function CartDrawer(): React.ReactElement {
   const { cart, isDrawerOpen, closeDrawer, clearCart } = useCart();
@@ -38,9 +39,7 @@ export function CartDrawer(): React.ReactElement {
       <DialogPrimitive.Root
         open={isDrawerOpen}
         onOpenChange={(open) => {
-          if (!open) {
-            closeDrawer();
-          }
+          if (!open) closeDrawer();
         }}
       >
         <DialogPrimitive.Portal>
@@ -49,7 +48,6 @@ export function CartDrawer(): React.ReactElement {
             aria-describedby="cart-drawer-desc"
             className="fixed inset-y-0 right-0 z-50 flex flex-col w-full max-w-md bg-card text-card-foreground shadow-2xl border-l border-border duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right"
           >
-            {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-border bg-card">
               <div className="flex items-center gap-2.5">
                 <ShoppingBag className="w-5 h-5 text-gold" />
@@ -67,7 +65,6 @@ export function CartDrawer(): React.ReactElement {
               Shopping cart item list, subtotal, and checkout actions
             </p>
 
-            {/* Free Shipping Progress */}
             <div className="px-6 py-3.5 bg-secondary/50 border-b border-border/80">
               <div className="flex items-center justify-between text-xs font-semibold mb-1.5">
                 {cart.freeShippingProgress >= 100 ? (
@@ -97,7 +94,6 @@ export function CartDrawer(): React.ReactElement {
               </div>
             </div>
 
-            {/* Item List */}
             <div className="flex-1 overflow-y-auto px-6 divide-y divide-border/60">
               {isCartEmpty ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-12 space-y-4">
@@ -135,94 +131,24 @@ export function CartDrawer(): React.ReactElement {
               )}
             </div>
 
-            {/* Footer */}
             {!isCartEmpty && (
-              <div className="p-6 border-t border-border bg-card space-y-3.5">
-                <div className="space-y-1.5 text-xs text-muted-foreground">
-                  <div className="flex justify-between items-center text-sm font-bold text-foreground">
-                    <span>Subtotal:</span>
-                    <span className="font-serif text-base text-gold">
-                      ${cart.subtotal.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-[11px]">
-                    <span>Fresh Delivery:</span>
-                    <span>
-                      {cart.shipping === 0
-                        ? "FREE"
-                        : `$${cart.shipping.toFixed(2)}`}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-2 pt-1">
-                  <Button
-                    type="button"
-                    variant="primary"
-                    className="w-full flex items-center justify-center gap-2"
-                    onClick={handleCheckoutClick}
-                  >
-                    <span>Proceed to Checkout</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-
-                  <div className="flex items-center gap-2">
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="flex-1"
-                      size="sm"
-                      onClick={closeDrawer}
-                    >
-                      <Link href="/cart">Full Cart View</Link>
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="text-xs text-muted-foreground hover:text-destructive"
-                      onClick={() => setIsClearModalOpen(true)}
-                    >
-                      Clear
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <CartDrawerFooter
+                cart={cart}
+                onCheckout={handleCheckoutClick}
+                onClose={closeDrawer}
+                onOpenClear={() => setIsClearModalOpen(true)}
+              />
             )}
           </DialogPrimitive.Content>
         </DialogPrimitive.Portal>
       </DialogPrimitive.Root>
 
-      {/* Confirmation Modal for Clearing Cart */}
-      <Modal
+      <CartDrawerClearModal
         isOpen={isClearModalOpen}
         onClose={() => setIsClearModalOpen(false)}
-        title="Clear your basket?"
-        description="Are you sure you want to remove all freshly baked treats from your cart? This action cannot be undone."
-        size="sm"
-        footer={
-          <div className="flex items-center gap-2 w-full justify-end">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsClearModalOpen(false)}
-            >
-              Keep Items
-            </Button>
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={handleConfirmClear}
-            >
-              Clear Cart
-            </Button>
-          </div>
-        }
-      >
-        <div className="text-xs text-muted-foreground py-1">
-          Items in your basket: <strong>{cart.totalCount} treats</strong>.
-        </div>
-      </Modal>
+        onConfirm={handleConfirmClear}
+        totalCount={cart.totalCount}
+      />
     </>
   );
 }

@@ -9,14 +9,19 @@ The project strictly adheres to a **Root-level Feature Architecture** with **NO 
 
 ```
 crumea_shop/
-├── app/                  # ONLY Next.js App Router routes & globals.css
+├── app/                  # ONLY Next.js App Router routes & globals.css (thin route wrappers < 60 lines)
 │   ├── layout.tsx        # Root layout with providers, fonts, header & footer
-│   ├── page.tsx          # Home page / temporary test bench
+│   ├── page.tsx          # Home page entry route
+│   ├── shop/             # Shop catalog route & loading skeleton
+│   ├── products/[id]/    # Dynamic product detail route & loading skeleton
+│   ├── cart/             # Shopping cart route
+│   ├── checkout/         # Atelier checkout route
+│   ├── about/            # Atelier story & heritage route
 │   ├── globals.css       # THE ONLY .css file in repository (@theme + :root/.dark)
 │   ├── loading.tsx       # Route loading skeleton UI
 │   ├── error.tsx         # Route error boundary ("use client")
 │   └── not-found.tsx     # Custom 404 page ("Crumb Not Found")
-├── components/
+├── components/           # Strictly ONLY shared ui primitives and layout shells
 │   ├── ui/               # shadcn/ui accessible primitives (cva, Radix UI)
 │   │   ├── button.tsx
 │   │   ├── input.tsx
@@ -29,25 +34,31 @@ crumea_shop/
 │   │   └── skeleton.tsx
 │   └── layout/           # Shared layout components
 │       ├── Header.tsx
+│       ├── HeaderNav.tsx
+│       ├── MobileNavDrawer.tsx
 │       ├── Footer.tsx
 │       ├── ThemeProvider.tsx
 │       ├── ThemeToggle.tsx
 │       └── ToastContainer.tsx
-├── features/             # Domain feature modules
-│   ├── products/
+├── features/             # Domain feature modules (all components decomposed < 140 lines)
+│   ├── home/             # Home page sections & visual story
+│   │   └── components/   # HeroSection, CategoryStrip, StorySection, GiftingSection, etc.
+│   ├── about/            # Atelier about view & sub-sections
+│   │   └── components/   # AboutView, AboutHero, AboutPhilosophy, AboutManifesto, AboutAtelier
+│   ├── products/         # Catalog & product detail domain
 │   │   ├── products.types.ts
 │   │   ├── products.api.ts
 │   │   ├── products.logic.ts
-│   │   └── components/
-│   ├── cart/
+│   │   └── components/   # ProductCard, ProductGrid, ProductFilters, ProductDetailView, etc.
+│   ├── cart/             # Zero-network cart domain (pure math & localStorage snapshot sync)
 │   │   ├── cart.types.ts
 │   │   ├── cart.logic.ts
 │   │   ├── cart.state.ts
 │   │   ├── CartProvider.tsx
-│   │   └── components/
-│   └── checkout/
+│   │   └── components/   # CartDrawer, CartView, CartSummaryCard, CartItemRow, etc.
+│   └── checkout/         # Checkout flow & order confirmation
 │       ├── checkout.schema.ts
-│       └── components/
+│       └── components/   # CheckoutView, CheckoutForm, ShippingAddressSection, OrderConfirmation, etc.
 ├── lib/                  # Shared utilities and core cross-cutting logic
 │   ├── utils.ts          # cn() classnames helper (clsx + tailwind-merge)
 │   ├── api/
@@ -106,16 +117,18 @@ crumea_shop/
 
 ---
 
-## 5. Architectural Separation
+## 5. Architectural Separation & File Size Limits
 
-1. **Server Components by Default**:
-   - Page routes and layout shells remain Server Components unless client reactivity is strictly required.
-2. **`"use client"` Leaf Boundaries**:
+1. **Server Components by Default & Thin Routes**:
+   - Page routes (`app/**/page.tsx`) remain thin Server Component entry wrappers (< 40–60 lines) that delegate UI rendering to their respective `features/*` modules.
+2. **File Size Limit (< ~140 Lines)**:
+   - All components, pages, and modules are cleanly decomposed into focused sub-components under ~140 lines for maximum maintainability and readability.
+3. **`"use client"` Leaf Boundaries**:
    - Only interactive stateful components (`CartProvider`, `ThemeProvider`, `ToastProvider`, interactive forms, toggles) include `"use client"`.
-3. **Pure Business Logic**:
+4. **Pure Business Logic & Zero-Network Cart**:
    - Math and domain filtering logic live strictly in pure functions (`cart.logic.ts`, `products.logic.ts`).
-   - Pure functions never import React hooks or touch the DOM.
-4. **Derived State**:
+   - `CartProvider` does NOT fetch the product catalog inside a `useEffect`. Instead, essential product snapshot fields (`productId`, `name`, `price`, `image`, `category`, `qty`) are stored directly in `CartItem`, enabling 100% synchronous, zero-network cart computations.
+5. **Derived State**:
    - Subtotals, counts, and filtered lists are computed during render, never stored in redundant `useState` or synchronized via `useEffect`.
 
 ---
@@ -123,12 +136,12 @@ crumea_shop/
 ## 6. App Router Routes & Completed Domain Modules
 
 - `app/layout.tsx`: Root shell mounting `ThemeProvider`, `ToastProvider`, `CartProvider`, `Header`, `CartDrawer`, `Footer`.
-- `app/page.tsx`: Editorial homepage with `HeroSection`, `CategoryStrip`, `ProductGrid`, `StorySection`, `GiftingSection`, `IngredientsSection`, `ReviewsSection`, `NewsletterSection`.
-- `app/shop/page.tsx`: Catalog route with `ProductFilters` and `ShopCatalogClient` (handles loading, error, empty, and no-match filter states).
-- `app/products/[id]/page.tsx`: Dynamic detail page with breadcrumbs, image zoom, `ProductDetailActions` quantity stepper, and related products.
-- `app/cart/page.tsx`: Full-page cart with free shipping progress bar, `CartItemRow` list, and order summary.
-- `app/checkout/page.tsx`: Checkout flow with `CheckoutForm` and `OrderConfirmation` receipt view.
-- `app/about/page.tsx`: Atelier heritage and philosophy page.
+- `app/page.tsx`: Thin entry route delegating to `features/home/components/` (`HeroSection`, `CategoryStrip`, `FeaturedTreatsSection`, `StorySection`, `GiftingSection`, `IngredientsSection`, `ReviewsSection`, `NewsletterSection`).
+- `app/shop/page.tsx`: Catalog route delegating to `features/products/components/ShopCatalogClient.tsx` (handles loading, error, empty, and no-match filter states).
+- `app/products/[id]/page.tsx`: Dynamic detail page delegating to `features/products/components/ProductDetailView.tsx`.
+- `app/cart/page.tsx`: Full-page cart delegating to `features/cart/components/CartView.tsx`.
+- `app/checkout/page.tsx`: Checkout flow delegating to `features/checkout/components/CheckoutView.tsx`.
+- `app/about/page.tsx`: Atelier heritage and philosophy page delegating to `features/about/components/AboutView.tsx`.
 - `app/not-found.tsx`: Accessible custom 404 page ("Crumb Not Found").
 
 ---

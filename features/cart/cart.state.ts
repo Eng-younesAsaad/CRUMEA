@@ -1,4 +1,5 @@
-import { type CartItem, isCartItemList } from "./cart.types";
+import { type Product } from "../products/products.types";
+import { type CartItem, isCartItem } from "./cart.types";
 
 const CART_STORAGE_KEY = "crumea_cart";
 
@@ -14,10 +15,17 @@ export function getSavedCart(): CartItem[] {
     }
 
     const parsed: unknown = JSON.parse(raw);
-    if (isCartItemList(parsed)) {
-      return parsed;
+    if (!Array.isArray(parsed)) {
+      return [];
     }
-    return [];
+
+    const validItems: CartItem[] = [];
+    for (const item of parsed) {
+      if (isCartItem(item)) {
+        validItems.push(item);
+      }
+    }
+    return validItems;
   } catch {
     return [];
   }
@@ -31,22 +39,34 @@ export function saveCart(items: CartItem[]): void {
   try {
     window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
   } catch {
-    // Fail silently on storage quota or security error
+    // Fail silently on storage quota or security restrictions
   }
 }
 
 export function addItemToCartState(
   current: CartItem[],
-  productId: number,
+  product: Product,
   qtyToAdd: number = 1
 ): CartItem[] {
-  const index = current.findIndex((item) => item.productId === productId);
+  const index = current.findIndex((item) => item.productId === product.id);
+  const qty = Math.max(1, qtyToAdd);
+
   if (index === -1) {
-    return [...current, { productId, qty: Math.max(1, qtyToAdd) }];
+    return [
+      ...current,
+      {
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        category: product.category,
+        qty,
+      },
+    ];
   }
 
   return current.map((item, i) =>
-    i === index ? { ...item, qty: item.qty + Math.max(1, qtyToAdd) } : item
+    i === index ? { ...item, qty: item.qty + qty } : item
   );
 }
 

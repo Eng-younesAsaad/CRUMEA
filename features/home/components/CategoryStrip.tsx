@@ -79,7 +79,6 @@ export function CategoryStrip(): React.ReactElement {
               className="group flex flex-col items-center text-center p-3 rounded-2xl hover:bg-card/70 transition-all duration-300"
               aria-label={`Explore ${cat.title}`}
             >
-              {/* Circular image presentation */}
               <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-border/80 group-hover:border-gold transition-colors duration-300 shadow-warm">
                 <Image
                   src={cat.image}
@@ -90,7 +89,6 @@ export function CategoryStrip(): React.ReactElement {
                 />
               </div>
 
-              {/* Title & Explore link */}
               <h3 className="font-serif text-sm sm:text-base font-bold text-foreground mt-3 group-hover:text-gold transition-colors">
                 {cat.title}
               </h3>

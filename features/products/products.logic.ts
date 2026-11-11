@@ -2,6 +2,10 @@ import { type Product } from "./products.types";
 
 export type ProductSortOption = "default" | "price-asc" | "price-desc";
 
+export function isProductSortOption(value: string): value is ProductSortOption {
+  return value === "default" || value === "price-asc" || value === "price-desc";
+}
+
 export function filterAndSortProducts(
   products: Product[],
   query?: string,

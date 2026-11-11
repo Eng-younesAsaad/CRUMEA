@@ -1,6 +1,29 @@
 import React from "react";
 import Link from "next/link";
 
+const SHOP_LINKS = [
+  { href: "/shop", label: "All Products" },
+  { href: "/shop?category=Cookies", label: "Cookies" },
+  { href: "/shop?category=Biscuits", label: "Biscuits" },
+  { href: "/shop?category=Brownies", label: "Brownies" },
+  { href: "/shop?category=Pastries", label: "Pastries" },
+  { href: "/shop?category=Cakes", label: "Cakes" },
+  { href: "/shop?category=Gift%20Boxes", label: "Gift Boxes" },
+];
+
+const COMPANY_LINKS = [
+  { href: "/about", label: "Our Story" },
+  { href: "/about", label: "Ingredients & Sourcing" },
+  { href: "/about", label: "The Atelier" },
+  { href: "/about", label: "Sustainability" },
+];
+
+const CARE_LINKS = [
+  { href: "/checkout", label: "Shipping & Delivery" },
+  { href: "/about", label: "FAQ & Allergens" },
+  { href: "/about", label: "Contact Concierge" },
+];
+
 export function Footer(): React.ReactElement {
   return (
     <footer className="bg-[#1A110B] text-[#FAF6F0] py-14 sm:py-16 border-t border-[#C89B68]/20">
@@ -22,142 +45,60 @@ export function Footer(): React.ReactElement {
             </p>
           </div>
 
-          {/* Column 1: SHOP */}
+          {/* SHOP Column */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C89B68]">
               SHOP
             </h4>
             <ul className="space-y-2.5 text-xs text-[#FAF6F0]/70 font-light">
-              <li>
-                <Link
-                  href="/shop"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  All Products
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop?category=Cookies"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Cookies
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop?category=Biscuits"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Biscuits
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop?category=Brownies"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Brownies
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop?category=Pastries"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Pastries
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop?category=Cakes"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Cakes
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop?category=Gift%20Boxes"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Gift Boxes
-                </Link>
-              </li>
+              {SHOP_LINKS.map((link) => (
+                <li key={link.href + link.label}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-[#C89B68] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 2: COMPANY */}
+          {/* COMPANY Column */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C89B68]">
               COMPANY
             </h4>
             <ul className="space-y-2.5 text-xs text-[#FAF6F0]/70 font-light">
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Ingredients &amp; Sourcing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  The Atelier
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Sustainability
-                </Link>
-              </li>
+              {COMPANY_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-[#C89B68] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 3: CUSTOMER CARE */}
+          {/* CUSTOMER CARE Column */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C89B68]">
               CUSTOMER CARE
             </h4>
             <ul className="space-y-2.5 text-xs text-[#FAF6F0]/70 font-light">
-              <li>
-                <Link
-                  href="/checkout"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Shipping &amp; Delivery
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  FAQ &amp; Allergens
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#C89B68] transition-colors"
-                >
-                  Contact Concierge
-                </Link>
-              </li>
+              {CARE_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-[#C89B68] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

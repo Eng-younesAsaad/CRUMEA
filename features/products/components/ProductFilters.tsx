@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { type ProductSortOption } from "../products.logic";
-import { Input } from "@/components/ui/input";
+import { type ProductSortOption, isProductSortOption } from "../products.logic";
+import { ProductCategoryPills } from "./ProductCategoryPills";
+import { ProductSearchBar } from "./ProductSearchBar";
 import { Button } from "@/components/ui/button";
-import { Search, X, RotateCcw, AlertTriangle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { RotateCcw, AlertTriangle } from "lucide-react";
 
 export interface ProductFiltersProps {
   searchQuery: string;
@@ -46,32 +46,11 @@ export function ProductFilters({
       aria-label="Filter and sort artisan treats"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-        {/* Search Input */}
-        <div className="md:col-span-5 relative">
-          <label htmlFor="shop-search-input" className="sr-only">
-            Search artisan treats
-          </label>
-          <div className="relative flex items-center">
-            <Search className="w-4 h-4 absolute left-3.5 text-muted-foreground pointer-events-none" />
-            <Input
-              id="shop-search-input"
-              type="search"
-              placeholder='Search "chocolate", "croissant", "almond"...'
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-9 pr-8 h-10 text-xs sm:text-sm bg-background/80"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => onSearchChange("")}
-                aria-label="Clear search input"
-                className="absolute right-2.5 p-1 text-muted-foreground hover:text-foreground"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            )}
-          </div>
+        <div className="md:col-span-5">
+          <ProductSearchBar
+            searchQuery={searchQuery}
+            onSearchChange={onSearchChange}
+          />
         </div>
 
         {/* Category Dropdown */}
@@ -103,24 +82,20 @@ export function ProductFilters({
             value={selectedSort}
             onChange={(e) => {
               const val = e.target.value;
-              if (
-                val === "default" ||
-                val === "price-asc" ||
-                val === "price-desc"
-              ) {
+              if (isProductSortOption(val)) {
                 onSortChange(val);
               }
             }}
             className="flex h-10 w-full rounded-md border border-border bg-background px-3 py-2 text-xs sm:text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-foreground cursor-pointer"
           >
-            <option value="default">Sort: Recommended</option>
+            <option value="default">Default Sort</option>
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
           </select>
         </div>
 
-        {/* Reset Action & Diagnostic Trigger */}
-        <div className="md:col-span-2 flex items-center justify-end gap-2">
+        {/* Actions */}
+        <div className="md:col-span-2 flex items-center gap-2 justify-end">
           {hasActiveFilters && (
             <Button
               type="button"
@@ -148,30 +123,12 @@ export function ProductFilters({
         </div>
       </div>
 
-      {/* Category Pills Strip */}
-      <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-0.5 no-scrollbar">
-        {categories.map((cat) => {
-          const isSelected =
-            selectedCategory.toLowerCase() === cat.toLowerCase();
-          return (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => onCategoryChange(cat)}
-              className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all select-none border",
-                isSelected
-                  ? "bg-gold text-espresso border-gold shadow-sm font-bold"
-                  : "bg-secondary/40 text-muted-foreground border-border/70 hover:border-gold hover:text-foreground"
-              )}
-            >
-              {cat === "All" ? "All Bakes" : cat}
-            </button>
-          );
-        })}
-      </div>
+      <ProductCategoryPills
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryChange={onCategoryChange}
+      />
 
-      {/* Count summary */}
       <div className="flex items-center justify-between text-xs text-muted-foreground pt-1 border-t border-border/50">
         <span>
           Showing{" "}
