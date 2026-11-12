@@ -67,7 +67,6 @@ crumea_shop/
 │       └── ToastContext.tsx # Centralized non-blocking toast notifications
 ├── public/               # Static assets
 ├── components.json       # shadcn/ui configuration
-├── tailwind.config.ts    # Tailwind CSS config
 ├── tsconfig.json         # Strict TypeScript configuration ("@/*": ["./*"])
 └── package.json
 ```
@@ -98,7 +97,7 @@ crumea_shop/
 
 1. All UI primitives reside in `components/ui/` and are built on top of Radix UI primitives and `class-variance-authority` (`cva`).
 2. Components must support polymorphic composition via `@radix-ui/react-slot` (`asChild`).
-3. Primitives must consume CRUMÉA design tokens defined in `globals.css` and `tailwind.config.ts`.
+3. Primitives must consume CRUMÉA design tokens defined in `globals.css` (`@theme`).
 4. Variants:
    - `Button`: `variant` (`default`, `primary`, `secondary`, `outline`, `ghost`, `destructive`), `size` (`default`, `sm`, `lg`, `icon`).
    - `Badge`: `variant` (`default`, `gold`, `secondary`, `outline`, `success`, `destructive`).
@@ -109,6 +108,8 @@ crumea_shop/
 ## 4. Styling & `@theme` Tokens
 
 - **Single CSS File Invariant**: `app/globals.css` is the **ONLY** `.css` file permitted in the repository.
+- **Tailwind CSS v4 `@theme` Only**: All brand palette tokens, semantic tokens, border radii, fonts, and box shadows are declared in `app/globals.css` within the `@theme` block. No `tailwind.config.ts` file exists or is permitted.
+- **Zero Arbitrary Hex Rule**: Never use arbitrary hex color classes like `text-[#C89B68]` or `bg-[#1A110B]` in JSX; always use `@theme` token classes (`text-gold`, `bg-espresso`, `border-gold/30`, `text-cream`, `bg-oat`, `bg-cocoa`, etc.).
 - No ad-hoc inline styles for color or spacing.
 - Both `@theme` and `:root` / `.dark` variables are synchronized for seamless light/dark mode transitions.
 - Light mode: Warm Alabaster Cream background (`#FAF6F0`), Deep Espresso text (`#1A110B`).

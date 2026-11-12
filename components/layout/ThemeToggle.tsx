@@ -26,14 +26,14 @@ export function ThemeToggle({
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
       className={cn(
-        "relative flex items-center justify-center w-9 h-9 rounded-full border border-[#C89B68]/30 hover:border-[#C89B68] text-[#FAF6F0] hover:text-[#C89B68] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B68]",
+        "relative flex items-center justify-center w-9 h-9 rounded-full border border-gold/30 hover:border-gold text-cream hover:text-gold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold",
         className
       )}
     >
       {mounted && isDark ? (
-        <Sun className="w-4 h-4 text-[#C89B68] transition-transform duration-200" />
+        <Sun className="w-4 h-4 text-gold transition-transform duration-200" />
       ) : (
-        <Moon className="w-4 h-4 text-[#FAF6F0] transition-transform duration-200" />
+        <Moon className="w-4 h-4 text-cream transition-transform duration-200" />
       )}
     </button>
   );

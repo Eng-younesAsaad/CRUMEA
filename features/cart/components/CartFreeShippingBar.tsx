@@ -18,7 +18,7 @@ export function CartFreeShippingBar({
     <div className="p-4 rounded-2xl border border-border bg-card shadow-warm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold gap-1 mb-2">
         {freeShippingProgress >= 100 ? (
-          <span className="text-[#2E7D32] dark:text-[#81C784] flex items-center gap-1.5">
+          <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
             <Sparkles className="w-4 h-4 text-gold" />
             You have unlocked Free Fresh Delivery!
           </span>

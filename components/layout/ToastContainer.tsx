@@ -30,21 +30,21 @@ export function ToastContainer(): React.ReactElement | null {
             className={cn(
               "pointer-events-auto flex items-start gap-3 p-4 rounded-xl shadow-warm-lg border transition-all duration-300 transform translate-y-0",
               isSuccess &&
-                "bg-[#FAF6F0] dark:bg-[#1E140E] border-[#C89B68] text-[#1A110B] dark:text-[#FAF6F0]",
+                "bg-cream dark:bg-card border-gold text-espresso dark:text-cream",
               isError &&
-                "bg-[#FFEBEE] dark:bg-[#2D1414] border-[#C62828] text-[#C62828] dark:text-[#FFCDD2]",
+                "bg-destructive/15 dark:bg-destructive/20 border-destructive text-destructive dark:text-red-300",
               !isSuccess &&
                 !isError &&
-                "bg-[#E3F2FD] dark:bg-[#132B45] border-[#1565C0] text-[#1565C0] dark:text-[#BBDEFB]"
+                "bg-sky-50 dark:bg-sky-950/50 border-sky-600 text-sky-700 dark:text-sky-300"
             )}
           >
             <div className="shrink-0 mt-0.5">
               {isSuccess && (
-                <CheckCircle2 className="w-5 h-5 text-[#2E7D32] dark:text-[#C89B68]" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-gold" />
               )}
-              {isError && <AlertCircle className="w-5 h-5 text-[#C62828]" />}
+              {isError && <AlertCircle className="w-5 h-5 text-destructive" />}
               {!isSuccess && !isError && (
-                <Info className="w-5 h-5 text-[#1565C0]" />
+                <Info className="w-5 h-5 text-sky-600" />
               )}
             </div>
 

@@ -76,7 +76,7 @@ export function ProductCard({ product }: ProductCardProps): React.ReactElement {
               type="button"
               onClick={() => setIsQuickViewOpen(true)}
               aria-label={`Quick view ${product.name}`}
-              className="absolute bottom-3 right-3 p-2 rounded-full bg-[#1A110B]/85 hover:bg-[#C89B68] text-[#FAF6F0] hover:text-[#1A110B] shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 focus:opacity-100"
+              className="absolute bottom-3 right-3 p-2 rounded-full bg-espresso/85 hover:bg-gold text-cream hover:text-espresso shadow-md opacity-0 group-hover:opacity-100 transition-all duration-200 focus:opacity-100"
             >
               <Eye className="w-4 h-4" />
             </button>

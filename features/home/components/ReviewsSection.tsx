@@ -29,7 +29,7 @@ export function ReviewsSection(): React.ReactElement {
 
   return (
     <section
-      className="py-16 sm:py-20 bg-[#F3ECE1]/60 dark:bg-[#1A100B] border-b border-border/80"
+      className="py-16 sm:py-20 bg-oat/60 dark:bg-espresso border-b border-border/80"
       aria-labelledby="reviews-title"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,14 +56,11 @@ export function ReviewsSection(): React.ReactElement {
             >
               <CardContent className="p-0 space-y-4">
                 <div
-                  className="flex items-center gap-1 text-[#C89B68]"
+                  className="flex items-center gap-1 text-gold"
                   aria-label="5 out of 5 stars"
                 >
                   {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-current text-[#C89B68]"
-                    />
+                    <Star key={i} className="w-4 h-4 fill-current text-gold" />
                   ))}
                 </div>
 
@@ -77,7 +74,7 @@ export function ReviewsSection(): React.ReactElement {
                   <div className="flex items-center gap-1.5 font-bold text-foreground">
                     <span>{rev.author}</span>
                     <CheckCircle
-                      className="w-3.5 h-3.5 text-[#2E7D32] dark:text-[#81C784]"
+                      className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400"
                       aria-label="Verified Customer"
                     />
                   </div>

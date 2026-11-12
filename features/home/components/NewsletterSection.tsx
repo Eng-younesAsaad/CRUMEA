@@ -28,29 +28,29 @@ export function NewsletterSection(): React.ReactElement {
       aria-labelledby="newsletter-title"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#1A110B] via-[#241710] to-[#1A110B] text-[#FAF6F0] shadow-2xl border border-[#C89B68]/30">
+        <div className="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-espresso via-cocoa to-espresso text-cream shadow-2xl border border-gold/30">
           <div className="text-center max-w-xl mx-auto space-y-3 mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C89B68]/15 border border-[#C89B68]/30 text-[#C89B68] text-xs font-bold tracking-[0.2em] uppercase select-none">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold text-xs font-bold tracking-[0.2em] uppercase select-none">
               <Mail className="w-3.5 h-3.5" />
               <span>STAY IN THE LOOP</span>
             </div>
 
             <h2
               id="newsletter-title"
-              className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#FAF6F0]"
+              className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-cream"
             >
               Fresh news from our ovens.
             </h2>
 
-            <p className="text-xs sm:text-sm text-[#FAF6F0]/75 leading-relaxed font-light">
+            <p className="text-xs sm:text-sm text-cream/75 leading-relaxed font-light">
               Subscribe for seasonal flavor launches, secret weekend batches,
               and complimentary delivery on your first order.
             </p>
           </div>
 
           {isSubmitted ? (
-            <div className="flex items-center justify-center gap-2.5 p-4 rounded-xl bg-[#2E7D32]/20 border border-[#2E7D32]/40 text-[#FAF6F0] text-sm text-center">
-              <CheckCircle2 className="w-5 h-5 text-[#81C784]" />
+            <div className="flex items-center justify-center gap-2.5 p-4 rounded-xl bg-emerald-800/20 border border-emerald-600/40 text-cream text-sm text-center">
+              <CheckCircle2 className="w-5 h-5 text-emerald-300" />
               <span>
                 Thank you for subscribing! Check your inbox for your 10% welcome
                 gift.
@@ -72,21 +72,21 @@ export function NewsletterSection(): React.ReactElement {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-11 bg-white/10 border-white/20 text-[#FAF6F0] placeholder:text-[#FAF6F0]/40 focus-visible:ring-gold focus-visible:border-gold"
+                  className="h-11 bg-white/10 border-white/20 text-cream placeholder:text-cream/40 focus-visible:ring-gold focus-visible:border-gold"
                 />
               </div>
 
               <Button
                 type="submit"
                 variant="primary"
-                className="w-full sm:w-auto h-11 px-6 bg-[#C89B68] hover:bg-[#B88956] text-[#1A110B] font-bold text-xs tracking-wider uppercase shrink-0 shadow-md"
+                className="w-full sm:w-auto h-11 px-6 bg-gold hover:bg-gold-hover text-espresso font-bold text-xs tracking-wider uppercase shrink-0 shadow-md"
               >
                 Subscribe
               </Button>
             </form>
           )}
 
-          <p className="text-[11px] text-[#FAF6F0]/50 text-center mt-4 font-light">
+          <p className="text-[11px] text-cream/50 text-center mt-4 font-light">
             No spam, ever. Unsubscribe at any time with a single click.
           </p>
         </div>

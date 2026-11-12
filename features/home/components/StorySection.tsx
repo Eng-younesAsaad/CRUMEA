@@ -14,14 +14,14 @@ export function StorySection(): React.ReactElement {
     <>
       <section
         id="story"
-        className="py-16 sm:py-24 bg-[#F3ECE1] dark:bg-[#221711] border-b border-border/80"
+        className="py-16 sm:py-24 bg-oat dark:bg-cocoa border-b border-border/80"
         aria-labelledby="story-title"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Column: Narrative Content */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C89B68]/15 border border-[#C89B68]/30 text-gold text-xs font-semibold tracking-wider uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold text-xs font-semibold tracking-wider uppercase">
                 <Sparkles className="w-3.5 h-3.5 text-gold" />
                 <span>Our Heritage</span>
               </div>
@@ -80,7 +80,7 @@ export function StorySection(): React.ReactElement {
                     type="button"
                     onClick={() => setIsVideoModalOpen(true)}
                     aria-label="Play our atelier story"
-                    className="group relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FAF6F0]/90 hover:bg-[#C89B68] text-[#1A110B] shadow-2xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-gold/50"
+                    className="group relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cream/90 hover:bg-gold text-espresso shadow-2xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-gold/50"
                   >
                     <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1" />
                     <span className="sr-only">Play Video</span>
@@ -88,13 +88,13 @@ export function StorySection(): React.ReactElement {
                 </div>
 
                 {/* Floating Craft Badge */}
-                <div className="absolute bottom-4 left-4 right-4 sm:right-auto bg-[#1A110B]/85 backdrop-blur-md border border-white/10 text-[#FAF6F0] p-3 rounded-xl shadow-lg flex items-center gap-3">
+                <div className="absolute bottom-4 left-4 right-4 sm:right-auto bg-espresso/85 backdrop-blur-md border border-white/10 text-cream p-3 rounded-xl shadow-lg flex items-center gap-3">
                   <Award className="w-5 h-5 text-gold shrink-0" />
                   <div className="text-xs">
-                    <p className="font-serif font-bold text-sm text-[#FAF6F0]">
+                    <p className="font-serif font-bold text-sm text-cream">
                       Artisanal Heritage Since 1924
                     </p>
-                    <p className="text-[#FAF6F0]/70 font-light text-[11px]">
+                    <p className="text-cream/70 font-light text-[11px]">
                       42 Rue de Saint-Honoré, Paris
                     </p>
                   </div>

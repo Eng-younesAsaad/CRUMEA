@@ -68,7 +68,7 @@ export function CartDrawer(): React.ReactElement {
             <div className="px-6 py-3.5 bg-secondary/50 border-b border-border/80">
               <div className="flex items-center justify-between text-xs font-semibold mb-1.5">
                 {cart.freeShippingProgress >= 100 ? (
-                  <span className="text-[#2E7D32] dark:text-[#81C784] flex items-center gap-1.5">
+                  <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-gold" />
                     Unlocked Free Fresh Delivery!
                   </span>

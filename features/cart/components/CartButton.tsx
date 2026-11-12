@@ -19,18 +19,18 @@ export function CartButton({ className }: CartButtonProps): React.ReactElement {
       onClick={toggleDrawer}
       aria-label={`Shopping cart with ${cart.totalCount} items`}
       className={cn(
-        "relative flex items-center justify-center gap-2 px-3 py-2 rounded-full border border-[#C89B68]/30 hover:border-[#C89B68] text-[#FAF6F0] hover:text-[#C89B68] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C89B68]",
+        "relative flex items-center justify-center gap-2 px-3 py-2 rounded-full border border-gold/30 hover:border-gold text-cream hover:text-gold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold",
         className
       )}
     >
-      <ShoppingBag className="w-4 h-4 text-[#C89B68]" />
+      <ShoppingBag className="w-4 h-4 text-gold" />
       <span className="text-xs font-semibold tracking-wider uppercase hidden sm:inline">
         Cart
       </span>
       {cart.totalCount > 0 && (
         <span
           id="cart-count"
-          className="flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[11px] font-bold bg-[#C89B68] text-[#1A110B] rounded-full shadow-sm"
+          className="flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[11px] font-bold bg-gold text-espresso rounded-full shadow-sm"
         >
           {cart.totalCount}
         </span>

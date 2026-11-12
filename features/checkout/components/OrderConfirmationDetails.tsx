@@ -17,10 +17,10 @@ export function OrderConfirmationDetails({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Recipient & Delivery */}
-      <Card className="border-[#C89B68]/20 bg-card/80 backdrop-blur-sm shadow-sm">
+      <Card className="border-gold/20 bg-card/80 backdrop-blur-sm shadow-sm">
         <CardHeader className="pb-3 border-b border-border/50">
           <CardTitle className="text-base font-serif flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-[#C89B68]" aria-hidden="true" />
+            <MapPin className="w-4 h-4 text-gold" aria-hidden="true" />
             Delivery Destination
           </CardTitle>
         </CardHeader>
@@ -65,10 +65,10 @@ export function OrderConfirmationDetails({
       </Card>
 
       {/* Payment & Schedule */}
-      <Card className="border-[#C89B68]/20 bg-card/80 backdrop-blur-sm shadow-sm">
+      <Card className="border-gold/20 bg-card/80 backdrop-blur-sm shadow-sm">
         <CardHeader className="pb-3 border-b border-border/50">
           <CardTitle className="text-base font-serif flex items-center gap-2">
-            <CreditCard className="w-4 h-4 text-[#C89B68]" aria-hidden="true" />
+            <CreditCard className="w-4 h-4 text-gold" aria-hidden="true" />
             Payment &amp; Schedule
           </CardTitle>
         </CardHeader>
@@ -88,10 +88,7 @@ export function OrderConfirmationDetails({
               Order Timestamp
             </p>
             <p className="text-foreground flex items-center gap-2">
-              <Clock
-                className="w-3.5 h-3.5 text-[#C89B68]"
-                aria-hidden="true"
-              />
+              <Clock className="w-3.5 h-3.5 text-gold" aria-hidden="true" />
               {order.orderDate}
             </p>
           </div>
@@ -109,11 +106,11 @@ export function OrderConfirmationDetails({
               </span>
             </div>
           </div>
-          <div className="pt-3 border-t border-border/40 bg-[#C89B68]/10 -mx-6 -mb-6 p-4 rounded-b-xl flex items-center justify-between">
+          <div className="pt-3 border-t border-border/40 bg-gold/10 -mx-6 -mb-6 p-4 rounded-b-xl flex items-center justify-between">
             <span className="font-serif text-base text-foreground">
               Total Settled:
             </span>
-            <span className="font-serif text-xl font-bold text-[#C89B68]">
+            <span className="font-serif text-xl font-bold text-gold">
               ${order.total.toFixed(2)}
             </span>
           </div>

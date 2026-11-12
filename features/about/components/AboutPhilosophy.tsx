@@ -30,11 +30,11 @@ export function AboutPhilosophy(): React.ReactElement {
   return (
     <section
       aria-labelledby="philosophy-title"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F3ECE1]/40 dark:bg-[#1f150f]/60"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-oat/40 dark:bg-cocoa/40"
     >
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="text-center space-y-2">
-          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-[#C89B68]">
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-gold">
             The Three Pillars
           </p>
           <h2
@@ -51,14 +51,14 @@ export function AboutPhilosophy(): React.ReactElement {
             return (
               <Card
                 key={pillar.number}
-                className="relative border-[#C89B68]/30 bg-card/90 backdrop-blur-sm p-8 flex flex-col justify-between hover:border-[#C89B68] transition-all duration-300 group shadow-sm hover:shadow-md"
+                className="relative border-gold/30 bg-card/90 backdrop-blur-sm p-8 flex flex-col justify-between hover:border-gold transition-all duration-300 group shadow-sm hover:shadow-md"
               >
                 <CardContent className="p-0 space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-3xl font-light text-[#C89B68]/60 group-hover:text-[#C89B68] transition-colors">
+                    <span className="font-serif text-3xl font-light text-gold/60 group-hover:text-gold transition-colors">
                       {pillar.number}
                     </span>
-                    <div className="w-10 h-10 rounded-full bg-[#C89B68]/15 flex items-center justify-center text-[#C89B68]">
+                    <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center text-gold">
                       <Icon className="w-5 h-5" aria-hidden="true" />
                     </div>
                   </div>

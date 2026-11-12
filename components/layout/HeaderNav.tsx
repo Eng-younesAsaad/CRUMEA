@@ -44,8 +44,8 @@ function ActiveNavLinks(): React.ReactElement {
             key={link.href}
             href={link.href}
             className={cn(
-              "text-xs font-semibold tracking-[0.16em] uppercase transition-colors hover:text-[#C89B68] py-1 select-none",
-              isActive ? "text-[#C89B68]" : "text-[#FAF6F0]/80"
+              "text-xs font-semibold tracking-[0.16em] uppercase transition-colors hover:text-gold py-1 select-none",
+              isActive ? "text-gold" : "text-cream/80"
             )}
           >
             {link.label}
@@ -66,7 +66,7 @@ function NavFallback(): React.ReactElement {
         <Link
           key={link.href}
           href={link.href}
-          className="text-xs font-semibold tracking-[0.16em] uppercase transition-colors hover:text-[#C89B68] py-1 select-none text-[#FAF6F0]/80"
+          className="text-xs font-semibold tracking-[0.16em] uppercase transition-colors hover:text-gold py-1 select-none text-cream/80"
         >
           {link.label}
         </Link>

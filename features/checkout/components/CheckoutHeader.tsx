@@ -21,7 +21,7 @@ export function CheckoutHeader(): React.ReactElement {
       </nav>
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-border/50 pb-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-[#C89B68]">
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-gold">
             Secure Atelier Checkout
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl text-foreground font-normal mt-1">

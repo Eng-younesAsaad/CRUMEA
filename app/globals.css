@@ -1,40 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-espresso: #1a110b;
+  --color-espresso-deep: #120b07;
   --color-cocoa: #241710;
   --color-cream: #faf6f0;
   --color-oat: #f3ece1;
   --color-card-cream: #f5efe6;
   --color-gold: #c89b68;
   --color-gold-hover: #b88956;
+  --color-ink: #2a1e17;
   --color-espresso-ink: #2a1e17;
   --color-mocha: #6e5a4f;
 
+  /* Semantic tokens mapped to CSS variables for light/dark switching */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  /* Radius tokens */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
 
+  /* Typography tokens */
   --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
   --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
+
+  /* Warm shadow tokens */
+  --shadow-warm: 0 2px 4px rgba(26, 17, 11, 0.05);
+  --shadow-warm-md: 0 4px 12px rgba(26, 17, 11, 0.08);
+  --shadow-warm-lg: 0 12px 28px rgba(26, 17, 11, 0.12);
 }
 
 :root {
-  /* Brand Tokens */
-  --color-espresso: #1a110b;
-  --color-cocoa: #241710;
-  --color-cream: #faf6f0;
-  --color-oat: #f3ece1;
-  --color-card-cream: #f5efe6;
-  --color-gold: #c89b68;
-  --color-gold-hover: #b88956;
-  --color-espresso-ink: #2a1e17;
-  --color-mocha: #6e5a4f;
-
-  /* shadcn/ui Semantic Tokens - Light Mode (Warm Cream) */
+  /* shadcn/ui Semantic Tokens - Light Mode (Warm Alabaster Cream) */
   --background: #faf6f0;
   --foreground: #1a110b;
   --card: #f5efe6;
@@ -51,26 +67,9 @@
   --destructive-foreground: #faf6f0;
   --border: #e8dec8;
   --ring: #c89b68;
-
-  /* Border Radius Tokens */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
 }
 
 .dark {
-  /* Brand Tokens in Dark Mode */
-  --color-espresso: #120b07;
-  --color-cocoa: #1a100b;
-  --color-cream: #faf6f0;
-  --color-oat: #221711;
-  --color-card-cream: #1e140e;
-  --color-gold: #c89b68;
-  --color-gold-hover: #d6aa76;
-  --color-espresso-ink: #faf6f0;
-  --color-mocha: #a89587;
-
   /* shadcn/ui Semantic Tokens - Dark Mode (Rich Espresso) */
   --background: #1a110b;
   --foreground: #faf6f0;
@@ -98,5 +97,4 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  min-height: 100vh;
 }

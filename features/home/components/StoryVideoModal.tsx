@@ -26,14 +26,14 @@ export function StoryVideoModal({
       }
     >
       <div className="space-y-6 py-2">
-        <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border bg-[#1A110B] flex flex-col items-center justify-center text-center p-6 text-[#FAF6F0]">
-          <div className="w-16 h-16 rounded-full bg-[#C89B68]/20 border border-[#C89B68] text-[#C89B68] flex items-center justify-center mb-3">
+        <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border bg-espresso flex flex-col items-center justify-center text-center p-6 text-cream">
+          <div className="w-16 h-16 rounded-full bg-gold/20 border border-gold text-gold flex items-center justify-center mb-3">
             <Sparkles className="w-8 h-8" />
           </div>
           <h3 className="font-serif text-xl sm:text-2xl font-bold mb-2">
             “Good baking asks for nothing less than full presence.”
           </h3>
-          <p className="text-xs sm:text-sm text-[#FAF6F0]/80 font-light max-w-md">
+          <p className="text-xs sm:text-sm text-cream/80 font-light max-w-md">
             — Chef Hélène Beauchamp, Head Pâtissier at CRUMÉA Atelier
           </p>
         </div>

@@ -58,7 +58,7 @@ const CATEGORIES: CategoryItem[] = [
 export function CategoryStrip(): React.ReactElement {
   return (
     <section
-      className="py-14 sm:py-16 bg-[#F3ECE1]/70 dark:bg-[#1A100B] border-b border-border/80"
+      className="py-14 sm:py-16 bg-oat/70 dark:bg-espresso border-b border-border/80"
       aria-label="Artisan Bakery Categories"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

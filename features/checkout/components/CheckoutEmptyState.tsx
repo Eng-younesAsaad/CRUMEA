@@ -7,7 +7,7 @@ export function CheckoutEmptyState(): React.ReactElement {
   return (
     <main className="min-h-[70vh] flex items-center justify-center py-16 px-4 bg-background">
       <div className="max-w-md w-full text-center space-y-5 bg-card/60 backdrop-blur-sm p-8 rounded-2xl border border-border">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#C89B68]/15 text-[#C89B68]">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/15 text-gold">
           <ShoppingBag className="w-8 h-8" aria-hidden="true" />
         </div>
         <h1 className="font-serif text-2xl sm:text-3xl text-foreground">

@@ -17,6 +17,8 @@
 
 ## Strict Code Standards (Invariants)
 
+- **Zero Arbitrary Hex Rule**: Never use arbitrary hex color classes like `text-[#C89B68]` or `bg-[#1A110B]` in JSX; always use `@theme` token classes (`text-gold`, `bg-espresso`, `border-gold/30`, `text-cream`, `bg-oat`, `bg-cocoa`, etc.).
+- **Tailwind CSS v4 `@theme` Only**: All styling is driven by `@theme` in `app/globals.css`. No `tailwind.config.ts`.
 - **Zero `any`**: Strictly prohibited. Narrow with runtime predicates (`data is T`) or Zod.
 - **Zero `as`**: Never cast types (`as Product`, `as string`). Use runtime type predicates.
 - **Zero `!`**: Never use non-null assertions. Use defensive checks and default fallbacks.

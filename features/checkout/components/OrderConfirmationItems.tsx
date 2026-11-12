@@ -11,7 +11,7 @@ export function OrderConfirmationItems({
   order,
 }: OrderConfirmationItemsProps): React.ReactElement {
   return (
-    <Card className="border-[#C89B68]/20 bg-card/80 backdrop-blur-sm shadow-sm overflow-hidden">
+    <Card className="border-gold/20 bg-card/80 backdrop-blur-sm shadow-sm overflow-hidden">
       <CardHeader className="border-b border-border/50">
         <CardTitle className="text-lg font-serif">
           Artisan Treats in this Order
@@ -64,7 +64,7 @@ export function OrderConfirmationItems({
           </div>
           <div className="flex justify-between text-base font-serif font-bold text-foreground pt-2 border-t border-border/40">
             <span>Final Total</span>
-            <span className="text-[#C89B68]">${order.total.toFixed(2)}</span>
+            <span className="text-gold">${order.total.toFixed(2)}</span>
           </div>
         </div>
       </CardContent>
